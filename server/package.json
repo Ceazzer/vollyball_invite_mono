@@ -12,7 +12,8 @@
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
     "eslint-plugin-promise": "^6.0.0",
-    "typescript": "*"
+    "typescript": "*",
+    "resend": "^0.17.2"
   },
   "dependencies": {
     "express": "^4.17.1"
