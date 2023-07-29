@@ -1,12 +1,13 @@
 interface IEmailData {
+    id: string;
     to: string[] | string;
-    from: string;
     subject: string;
     html: string;    
 }
 
 interface Email extends IEmailData {
-
+    profileId?: string;
+    createdAt?: number;
 }
 
 class Email {
