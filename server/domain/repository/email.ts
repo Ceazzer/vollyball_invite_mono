@@ -1,15 +1,12 @@
 import type Email from "../entity/email";
 
-interface IParams {
-    email?: Email;
-    id?: string;
+interface IEmailRepositoryResend {
+    sendEmail: (email: Email) => Promise<void>;
 }
 
-interface IEmailRepository {
-    sendEmail: (params: IParams) => Promise<void>;
-}
+type EmailRepository = IEmailRepositoryResend;
 
-type EmailRepositoryFunc = () => IEmailRepository;
+type EmailRepositoryFunc = () => EmailRepository;
 
-export type { IParams, IEmailRepository, EmailRepositoryFunc };
+export type { IEmailRepositoryResend, EmailRepositoryFunc };
 

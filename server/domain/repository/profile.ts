@@ -1,12 +1,16 @@
-import profileModel from "../../repository_impl/database/mongo/model/profile";
+import profileModel from "../../datasource/mongo/model/profile";
 import ProfileDTO from "../dto/profile";
 import Profile from "../entity/profile";
 
-interface IProfileRepository {
+interface IProfileRepositoryMongo {
     createProfile: (profile: Profile) => Promise<ProfileDTO>;
 }
 
-type ProfileRepositoryFunc = () => IProfileRepository;
+interface IProfileRepositoryRedis {}
 
-export type { IProfileRepository, ProfileRepositoryFunc };
+type ProfileRepository = IProfileRepositoryMongo | IProfileRepositoryRedis;;   
+
+type ProfileRepositoryFunc = () => ProfileRepository;
+
+export type {IProfileRepositoryMongo, IProfileRepositoryRedis, ProfileRepositoryFunc };
 

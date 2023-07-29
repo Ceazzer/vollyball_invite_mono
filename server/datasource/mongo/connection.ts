@@ -1,5 +1,5 @@
 import type mongoose from "mongoose";
-import type { IConfig } from "../../../config/config";
+import type { IConfig } from "../../config/config";
 
 interface IConnection {
     client : mongoose.Mongoose;
