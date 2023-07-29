@@ -5,6 +5,7 @@ export default {
         uri: process.env.MONGO_URI || 'mongodb://localhost:27017/vollyball-invite'
     },
     resend: {
-        key: process.env.RESEND_KEY || 'resend'
+        key: process.env.RESEND_KEY || 'resend',
+        from: process.env.RESEND_FROM || 'test.dev'
     }
 };

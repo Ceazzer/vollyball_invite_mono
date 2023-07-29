@@ -1,11 +1,13 @@
 interface IEmailData {
-    to: string;
+    to: string[] | string;
     from: string;
     subject: string;
-    text: string;
+    html: string;    
 }
 
-interface Email extends IEmailData {}
+interface Email extends IEmailData {
+
+}
 
 class Email {
     constructor(data: IEmailData) {
@@ -14,6 +16,22 @@ class Email {
 
     toObject() {
         return { ...this };
+    }
+
+    toJSON() {
+        return JSON.stringify(this.toObject());
+    }
+
+    toString() {
+        return this.toJSON();
+    }
+
+    static fromJSON(json: string) {
+        return new Email(JSON.parse(json));
+    }
+
+    static fromObject(object: IEmailData) {
+        return new Email(object);
     }
 }
 
