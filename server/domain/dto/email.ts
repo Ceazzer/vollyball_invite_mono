@@ -5,9 +5,9 @@ interface IEmailDataDTO extends IEmailData {
     profile: IProfileData
 }
 
-interface EmailDataDTO extends IEmailDataDTO {}
+interface EmailDTO extends IEmailDataDTO {}
 
-class EmailDataDTO {
+class EmailDTO {
     constructor(data: IEmailDataDTO) {
         Object.assign(this, data);
     }
@@ -32,3 +32,6 @@ class EmailDataDTO {
         return new this(object);
     }
 }
+
+export type { IEmailDataDTO, EmailDTO };
+export default EmailDTO;
