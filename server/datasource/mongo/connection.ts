@@ -2,35 +2,37 @@ import type mongoose from "mongoose";
 import type { IConfig } from "../../config/config";
 
 interface IConnection {
-    client : mongoose.Mongoose;
+    mongoose : mongoose.Mongoose;
     config: IConfig;
     options: mongoose.ConnectOptions;
 }
 
-function mongoConnection({client, config, options}: IConnection) {
+function mongoConnection({mongoose, config, options}: IConnection) {
     async function connectToMongo() {
         try {
-            await client.connect(process.env.MONGO_URI, options);
+            console.log(`Connecting to ${config.mongo.uri}`);
+            await mongoose.connect(config.mongo.uri, options);
         } catch (err) {
             console.error(`Mongoose Error: ${err}`);
+            process.exit(1);
         }
 
         console.log(`Connected to ${config.mongo.uri}`);
 
-        client.connection.on("connected", (err) => {
+        mongoose.connection.on("connected", (err) => {
             console.info(`Mongoose connected to ${config.mongo.uri}`);
         });
 
-        client.connection.on("reconnected", (err) => {
+        mongoose.connection.on("reconnected", (err) => {
             console.info(`Mongoose reconnected to ${config.mongo.uri}`);
         });
 
-        client.connection.on("error", (err) => {
+        mongoose.connection.on("error", (err) => {
             console.error(`Mongoose connection error: ${err}`);
-            client.disconnect();
+            mongoose.disconnect();
         });
 
-        client.connection.on("disconnected", (err) => {
+        mongoose.connection.on("disconnected", (err) => {
             console.warn(`Mongoose disconnected!`);
         });
     }

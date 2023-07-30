@@ -1,14 +1,14 @@
 import { IEmailData } from "../entity/email";
 import { IProfileData } from "../entity/profile";
 
-interface IProfileDTO extends IProfileData {
-    emails: IEmailData[];
+interface IProfileDataDTO extends IProfileData {}
+
+interface ProfileDTO extends IProfileDataDTO {
+    emails?: IEmailData[];
 }
 
-interface ProfileDTO extends IProfileDTO {}
-
 class ProfileDTO {
-    constructor(data: IProfileDTO) {
+    constructor(data: IProfileDataDTO) {
         Object.assign(this, data);
     }
 
@@ -28,10 +28,10 @@ class ProfileDTO {
         return new this(JSON.parse(json));
     }
 
-    static fromObject(object: IProfileDTO) {
+    static fromObject(object: IProfileDataDTO) {
         return new this(object);
     }
 }
 
-export type { IProfileDTO, ProfileDTO };
+export type { IProfileDataDTO, ProfileDTO };
 export default ProfileDTO;

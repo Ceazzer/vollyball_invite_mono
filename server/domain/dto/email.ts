@@ -1,11 +1,11 @@
 import { IEmailData } from "../entity/email";
 import { IProfileData } from "../entity/profile";
 
-interface IEmailDataDTO extends IEmailData {
-    profile: IProfileData
-}
+interface IEmailDataDTO extends IEmailData {}
 
-interface EmailDTO extends IEmailDataDTO {}
+interface EmailDTO extends IEmailDataDTO {
+    profile?: IProfileData
+}
 
 class EmailDTO {
     constructor(data: IEmailDataDTO) {

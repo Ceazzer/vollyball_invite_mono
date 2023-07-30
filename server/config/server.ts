@@ -1,19 +1,19 @@
 
 import express from 'express';
+import { IConfig } from './config';
 
 interface IServerParams {
     app: express.Application;
+    config: IConfig
 }
 
 interface IServer {
     startServer: () => void;
 }
 
-type ServerFunc = (params: IServerParams) => IServer;
-
-function serverConfig({app}: IServerParams): IServer {
+function serverConfig({app, config}: IServerParams): IServer {
     function startServer() {
-        const port = process.env.PORT || 3000;
+        const port = +config.port;
         app.listen(port, () => {
             console.log(`Server listening on port ${port}`);
         });
